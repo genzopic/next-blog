@@ -9,7 +9,8 @@ type SearchParams = {
 export default async function PostsPage({
   searchParams,
 }: {
-  SearchParams: Promise<SearchParams>;
+  // SearchParams: Promise<SearchParams>;
+  searchParams: SearchParams;
 }) {
   const resolvedSearchParams = await searchParams;
   const query = resolvedSearchParams.search || "";
