@@ -10,7 +10,7 @@ export default async function PostsPage({
   searchParams,
 }: {
   // SearchParams: Promise<SearchParams>;
-  searchParams: SearchParams;
+  searchParams: Promise<SearchParams>;
 }) {
   const resolvedSearchParams = await searchParams;
   const query = resolvedSearchParams.search || "";
