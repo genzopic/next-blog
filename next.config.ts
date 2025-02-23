@@ -11,6 +11,12 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // 画像アップロードのサイズ拡張（デフォルト１MB）
+  experimental: {
+    serverActions: {
+      bodySizeLimit: "5mb",
+    },
+  },
 };
 
 export default nextConfig;
