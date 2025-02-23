@@ -46,3 +46,11 @@ npm install react-markdown@^9 remark-gfm@^4 rehype-highlight@^7 react-textarea-a
 ```
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 ```
+
+## add radio
+
+```
+npx shadcn@^2 add radio-group
+
+> Use --force
+```
