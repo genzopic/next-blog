@@ -1,10 +1,42 @@
 import { writeFile } from "fs/promises";
 import path from "path";
+import { supabase } from "@/lib/supabase";
 
+// 画像保存
 export async function saveImage(file: File): Promise<string | null> {
+  const useSupabase = process.env.NEXT_PUBLIC_USE_SUPABASE_STORAGE === "true";
+  if (useSupabase) {
+    return await saveImageToSupabase(file);
+  } else {
+    return await saveImageToLocal(file);
+  }
+}
+
+// supabaseストレージ
+async function saveImageToSupabase(file: File): Promise<string | null> {
+  const fileName = `${Date.now()}_${file.name}`;
+  const { error } = await supabase.storage
+    .from("next-blog-bucket")
+    .upload(fileName, file, {
+      cacheControl: "3600",
+      upsert: false,
+    });
+  if (error) {
+    console.error("Upload error:", error.message);
+    return null;
+  }
+  const { data: publicUrlData } = supabase.storage
+    .from("next-blog-bucket")
+    .getPublicUrl(fileName);
+  return publicUrlData.publicUrl;
+}
+
+// ローカルストレージ
+export async function saveImageToLocal(file: File): Promise<string | null> {
   const buffer = Buffer.from(await file.arrayBuffer());
   const fileName = `${Date.now()}_${file.name}`; // ファイル名生成 日時_ファイル名
   const uploadDir = path.join(process.cwd(), "public/images"); // プロジェクトフォルダのアップロードフォルダ
+
   try {
     const filePath = path.join(uploadDir, fileName); // 保存先の完全なファイル名
     await writeFile(filePath, buffer); // 指定パスにファイル(buffer)を書き込む

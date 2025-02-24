@@ -54,3 +54,25 @@ npx shadcn@^2 add radio-group
 
 > Use --force
 ```
+
+## マイグレーション
+
+```
+// sqlite の記載が残っているので削除
+rm prisma/migrations
+
+// マイグレーション（テーブル作成）
+npx prisma migrate dev --name init
+
+// シード実行（ダミーデータ）
+npx prisma db seed
+
+// prisma クライアント再作成
+npx prisma generate
+```
+
+## supabase storage
+
+```
+npm install @supabase/supabase-js
+```

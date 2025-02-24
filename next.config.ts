@@ -9,6 +9,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "picsum.photos",
       },
+      {
+        protocol: "https",
+        hostname: "leaxotooehutjupuwkmu.supabase.co",
+      },
     ],
   },
   // 画像アップロードのサイズ拡張（デフォルト１MB）
