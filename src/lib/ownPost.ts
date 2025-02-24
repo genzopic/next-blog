@@ -1,4 +1,3 @@
-import { getPosts } from "@/lib/post";
 import { prisma } from "@/lib/prisma";
 
 // 記事一覧取得

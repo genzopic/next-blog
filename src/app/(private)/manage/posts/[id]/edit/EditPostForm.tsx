@@ -10,7 +10,6 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { updatePost } from "@/lib/actions/updatePost";
 import Image from "next/image";
-import { boolean } from "zod";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 type EditPostFormProps = {
